@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="com.mclowicz.mcmovie.features.detail.components.MovieComponent" />
+
+        <variable
+            name="vm"
+            type="com.mclowicz.mcmovie.features.detail.ui.DetailViewModel" />
+
+        <variable
+            name="lifecycle"
+            type="androidx.lifecycle.LifecycleOwner" />
+
+        <import type="com.mclowicz.mcmovie.features.detail.ui.DetailLayoutStrategy" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/homeRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:nestedScrollingEnabled="true"
+            app:items="@{vm.detailComponent}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layoutStrategy="@{DetailLayoutStrategy.INSTANCE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:lifecycle="@{lifecycle}"
+            app:parentItem="@{vm}"
+            app:viewModel="@{vm}"
+            tools:listitem="@layout/layout_component_most_popular" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
