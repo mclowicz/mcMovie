@@ -1,7 +1,6 @@
 package com.mclowicz.mcmovie.features.detail.components
 
 import androidx.lifecycle.MutableLiveData
-import com.mclowicz.mcmovie.data.model.movie.MovieDetailResult
 import com.mclowicz.mcmovie.data.model.person.PopularPersonDetail
 import com.mclowicz.mcmovie.data.repository.MovieRepository
 import com.mclowicz.mcmovie.util.Resource

@@ -4,6 +4,7 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.MutableLiveData
 import com.mclowicz.mcmovie.data.model.person.PopularPeopleResult
 import com.mclowicz.mcmovie.data.model.person.PopularPerson
+import com.mclowicz.mcmovie.features.common.MoreType
 import com.mclowicz.mcmovie.util.Resource
 
 class MostPopularPeopleComponent (
@@ -12,6 +13,7 @@ class MostPopularPeopleComponent (
 
     override var title: MutableLiveData<String?> = MutableLiveData(null)
     override val items: ObservableArrayList<PopularPerson> = ObservableArrayList()
+    override var moreType: MoreType = MoreType.POPULAR_PEOPLES
 
     init {
         refreshData()
@@ -28,5 +30,11 @@ class MostPopularPeopleComponent (
 
     override fun setTitle(title: String?) {
         this.title.value = title
+    }
+
+    override fun addMoreData() {
+        data.data?.results?.let {
+            items.addAll(it)
+        }
     }
 }

@@ -5,7 +5,6 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.RecyclerView
-import com.mclowicz.mcmovie.util.kodebase.KodebaseRecyclerAdapter
 
 /**
  * Created by Stepan on 23.11.2016.

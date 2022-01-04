@@ -4,6 +4,8 @@ import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.*
 import com.mclowicz.mcmovie.data.repository.MovieRepository
 import com.mclowicz.mcmovie.features.base.BaseViewModel
+import com.mclowicz.mcmovie.features.common.MoreEvent
+import com.mclowicz.mcmovie.features.common.MoreType
 import com.mclowicz.mcmovie.features.navigation.NavEvent
 import com.mclowicz.mcmovie.features.detail.components.DetailComponentType
 import com.mclowicz.mcmovie.features.home.components.HomeComponent
@@ -50,7 +52,8 @@ class HomeViewModel @Inject constructor(
                             addAll(it)
                         }
                     }
-            }.collect { }
+            }
+                .collect { }
         }
     }
 
@@ -60,5 +63,9 @@ class HomeViewModel @Inject constructor(
 
     fun onItemClicked(id: Int, eventType: DetailComponentType) {
         navDetailEvent.value = NavEvent.NavDetailEvent(id, eventType)
+    }
+
+    fun onMoreClicked(title: String, moreType: MoreType) {
+        navDetailEvent.value = NavEvent.NavMoreEvent(MoreEvent(title, moreType))
     }
 }

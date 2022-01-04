@@ -16,7 +16,8 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
     @LayoutRes val layoutId: Int
 ) : Fragment() {
 
-    protected lateinit var binding: B private set
+    private var _binding: B? = null
+    protected val binding get() = _binding!!
     protected lateinit var viewModel: VM private set
     private val type = (javaClass.genericSuperclass as ParameterizedType)
     private val classVM = type.actualTypeArguments[1] as Class<VM>
@@ -26,11 +27,11 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+        _binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
         viewModel = createViewModelLazy(classVM.kotlin, { viewModelStore }).value
         binding.apply {
-            binding.lifecycleOwner = this@BaseFragment
-            binding.setVariable(BR.lifecycle, this@BaseFragment)
+            binding.lifecycleOwner = viewLifecycleOwner
+            binding.setVariable(BR.lifecycle, viewLifecycleOwner)
             binding.setVariable(BR.vm, viewModel)
         }
         return binding.root
@@ -39,8 +40,17 @@ abstract class BaseFragment<B : ViewDataBinding, VM : BaseViewModel>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setInitialVariables()
         initObservers()
+        bindUI()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     abstract fun initObservers()
+    abstract fun setInitialVariables()
+    abstract fun bindUI()
 }

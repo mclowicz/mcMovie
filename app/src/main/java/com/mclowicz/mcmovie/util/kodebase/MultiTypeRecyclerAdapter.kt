@@ -2,7 +2,6 @@ package com.mclowicz.mcmovie.util.kodebase
 
 import androidx.databinding.ObservableArrayList
 import androidx.lifecycle.ViewModel
-import com.mclowicz.mcmovie.util.kodebase.KodebaseRecyclerAdapter
 
 /**
  * Created by Stepan on 23.11.2016.

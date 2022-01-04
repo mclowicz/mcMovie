@@ -1,7 +1,5 @@
 package com.mclowicz.mcmovie.features.detail.ui
 
-import android.os.Bundle
-import android.view.View
 import androidx.navigation.fragment.navArgs
 import com.mclowicz.mcmovie.R
 import com.mclowicz.mcmovie.databinding.FragmentDetailBinding
@@ -15,19 +13,13 @@ class DetailFragment : BaseFragment<FragmentDetailBinding, DetailViewModel>(
 
     private val arguments: DetailFragmentArgs by navArgs()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initData()
-    }
-
-    override fun initObservers() {
-        with(viewModel) {
-
-        }
-    }
-
-    private fun initData() {
+    override fun setInitialVariables() {
         arguments.let {
             viewModel.setComponent(it.id, it.detailComponentType)
         }
     }
+
+    override fun initObservers() {}
+
+    override fun bindUI() {}
 }

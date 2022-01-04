@@ -1,6 +1,8 @@
 package com.mclowicz.mcmovie.data.model.tv
 
 import com.google.gson.annotations.SerializedName
+import com.mclowicz.mcmovie.data.model.movie.PopularMovie
+import com.mclowicz.mcmovie.features.more.paging.MoreResponse
 
 data class PopularTv(
     val id: Int,
@@ -15,4 +17,15 @@ data class PopularTv(
     val voteAverage: Double,
     @SerializedName("vote_count")
     val voteCount: Int
-)
+) : MoreResponse {
+
+    override fun getItemViewType(): Int = MoreResponse.TYPE_MOST_POPULAR_TV
+
+    override fun isSame(other: MoreResponse): Boolean {
+        return if (other is PopularMovie) {
+            id == other.id
+        } else {
+            false
+        }
+    }
+}

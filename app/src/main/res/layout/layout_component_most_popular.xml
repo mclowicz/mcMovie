@@ -44,9 +44,9 @@
                 android:textAllCaps="true"
                 android:textColor="@color/material_on_background_emphasis_high_type"
                 android:textStyle="bold"
-                app:setVisibility="@{item.data.status == Status.SUCCESS}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:setVisibility="@{item.data.status == Status.SUCCESS}"
                 tools:text="Most Popular Movies" />
 
             <View
@@ -60,16 +60,50 @@
                 app:layout_constraintStart_toStartOf="@+id/componentTitle"
                 app:layout_constraintTop_toBottomOf="@+id/componentTitle" />
 
+            <!-- View More -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:letterSpacing="0.1"
+                android:text="more..."
+                android:onClick="@{() -> parentItem.onMoreClicked(item.title ,item.moreType)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <!--            <LinearLayout-->
+<!--                android:id="@+id/componentViewMore"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="16dp"-->
+<!--                android:orientation="vertical"-->
+<!--                app:setVisibility="@{item.data.status == Status.SUCCESS}"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent">-->
+
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:letterSpacing="0.1"-->
+<!--                    android:text="view all"-->
+<!--                    android:drawableEnd="@drawable/ic_list"-->
+<!--                    android:drawablePadding="8dp"-->
+<!--                    android:textColor="@color/material_on_background_emphasis_high_type" />-->
+
+<!--            </LinearLayout>-->
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_popular_recycler_view"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="16dp"
                 android:orientation="horizontal"
-                app:setVisibility="@{item.data.status == Status.SUCCESS}"
+                app:component="@{item}"
                 app:items="@{item.items}"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layoutStrategy="@{HomeLayoutStrategy.INSTANCE}"
@@ -79,6 +113,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/view"
                 app:lifecycle="@{lifecycle}"
                 app:parentItem="@{parentItem}"
+                app:setVisibility="@{item.data.status == Status.SUCCESS}"
                 app:viewModel="@{parentItem}"
                 tools:listitem="@layout/item_home_popular" />
 

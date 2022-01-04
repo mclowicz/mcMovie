@@ -9,20 +9,29 @@ import com.mclowicz.mcmovie.data.model.tv.PopularTvResult
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface MovieApi {
 
     @GET("movie/popular")
-    suspend fun getMostPopularMovies(): Response<PopularResult>
+    suspend fun getMostPopularMovies(
+        @Query("page") page: Int? = null
+    ): Response<PopularResult>
 
     @GET("movie/top_rated")
-    suspend fun getTopRatedMovies(): Response<PopularResult>
+    suspend fun getTopRatedMovies(
+        @Query("page") page: Int? = null
+    ): Response<PopularResult>
 
     @GET("tv/popular")
-    suspend fun getMostPopularTvShows(): Response<PopularTvResult>
+    suspend fun getMostPopularTvShows(
+        @Query("page") page: Int? = null
+    ): Response<PopularTvResult>
 
     @GET("person/popular")
-    suspend fun getPopularPeoples(): Response<PopularPeopleResult>
+    suspend fun getPopularPeoples(
+        @Query("page") page: Int? = null
+    ): Response<PopularPeopleResult>
 
     @GET("movie/{movie_id}")
     suspend fun getMovieDetail(

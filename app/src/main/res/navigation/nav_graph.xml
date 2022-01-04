@@ -15,6 +15,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_destination_home_to_moreFragment"
+            app:destination="@id/moreFragment" />
     </fragment>
 
     <fragment
@@ -27,6 +30,17 @@
         <argument
             android:name="detailComponentType"
             app:argType="com.mclowicz.mcmovie.features.detail.components.DetailComponentType" />
+    </fragment>
+    <fragment
+        android:id="@+id/moreFragment"
+        android:name="com.mclowicz.mcmovie.features.more.MoreFragment"
+        android:label="MoreFragment" >
+        <argument
+            android:name="moreEvent"
+            app:argType="com.mclowicz.mcmovie.features.common.MoreEvent" />
+        <action
+            android:id="@+id/action_moreFragment_to_destination_detail"
+            app:destination="@id/destination_detail" />
     </fragment>
 
 </navigation>

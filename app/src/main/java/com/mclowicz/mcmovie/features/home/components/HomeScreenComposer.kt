@@ -3,6 +3,7 @@ package com.mclowicz.mcmovie.features.home.components
 import com.mclowicz.mcmovie.data.model.person.PopularPeopleResult
 import com.mclowicz.mcmovie.data.model.movie.PopularResult
 import com.mclowicz.mcmovie.data.model.tv.PopularTvResult
+import com.mclowicz.mcmovie.features.common.MoreType
 import com.mclowicz.mcmovie.util.Resource
 
 class HomeScreenComposer {
@@ -20,7 +21,10 @@ class HomeScreenComposer {
             MostPopularMoviesComponent(moviesResource)
                 .apply { setTitle(TITLE_MOST_POPULAR_MOVIES) },
             MostPopularMoviesComponent(topRatedResource)
-                .apply { setTitle(TITLE_TOP_RATED_MOVIES) },
+                .apply {
+                    setTitle(TITLE_TOP_RATED_MOVIES)
+                    moreType = MoreType.TOP_RATED_MOVIES
+                       },
             MostPopularTvComponent(tvResource)
                 .apply { setTitle(TITLE_MOST_POPULAR_TV_SHOWS) },
             MostPopularPeopleComponent(peoplesResource)
