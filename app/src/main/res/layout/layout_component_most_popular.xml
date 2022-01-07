@@ -72,29 +72,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-
-            <!--            <LinearLayout-->
-<!--                android:id="@+id/componentViewMore"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_marginTop="16dp"-->
-<!--                android:layout_marginEnd="16dp"-->
-<!--                android:orientation="vertical"-->
-<!--                app:setVisibility="@{item.data.status == Status.SUCCESS}"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:letterSpacing="0.1"-->
-<!--                    android:text="view all"-->
-<!--                    android:drawableEnd="@drawable/ic_list"-->
-<!--                    android:drawablePadding="8dp"-->
-<!--                    android:textColor="@color/material_on_background_emphasis_high_type" />-->
-
-<!--            </LinearLayout>-->
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/home_popular_recycler_view"
                 android:layout_width="0dp"

@@ -17,10 +17,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     R.layout.fragment_home
 ) {
 
-    companion object {
-        const val INDEX_RECYCLER_VIEW_DIRECTION_DOWN = 1
-    }
-
     override fun setInitialVariables() {}
 
     override fun initObservers() {
@@ -32,30 +28,28 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>(
     }
 
     override fun bindUI() {
-        val animation = AnimationUtils
-            .loadLayoutAnimation(context, R.anim.layout_animation_up_to_down)
-        binding.homeRecyclerView.layoutAnimation = animation
         ItemTouchHelper(RecyclerViewOnMoveCallback).apply {
             attachToRecyclerView(binding.homeRecyclerView)
         }
+        binding.apply {
+            homeRecyclerView.layoutAnimation = AnimationUtils
+                .loadLayoutAnimation(context, R.anim.layout_animation_up_to_down)
+            homeRecyclerView.addOnScrollListener(onScrollRecyclerViewListener)
+        }
+    }
 
-        binding.homeRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                val position =
-                    ((recyclerView.layoutManager) as LinearLayoutManager).findLastVisibleItemPosition()
-                val holder = recyclerView.findViewHolderForAdapterPosition(position)
-                if (dy > 0) {
-                    // Scrolling up
-                    holder?.itemView?.animation = AnimationUtils.loadAnimation(
-                        holder?.itemView?.context,
-                        R.anim.item_main_anim
-                    )
-                } else {
-                    // Scrolling down
-
-                }
+    private val onScrollRecyclerViewListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            val position =
+                ((recyclerView.layoutManager) as LinearLayoutManager).findLastVisibleItemPosition()
+            val holder = recyclerView.findViewHolderForAdapterPosition(position)
+            if (dy > 0) {
+                holder?.itemView?.animation = AnimationUtils.loadAnimation(
+                    holder?.itemView?.context,
+                    R.anim.item_main_anim
+                )
             }
-        })
+        }
     }
 
     private fun handleNavEvents(navEvent: NavEvent) {

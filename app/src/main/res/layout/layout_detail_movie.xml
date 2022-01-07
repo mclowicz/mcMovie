@@ -46,6 +46,7 @@
                     <ImageView
                         android:id="@+id/imageDetailMovie"
                         imageUrl="@{item.data.data.posterPath}"
+                        android:transitionName="@string/transition_item_detail"
                         android:layout_width="match_parent"
                         android:layout_height="300dp"
                         android:scaleType="centerCrop"

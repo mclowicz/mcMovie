@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">McMovie</string>
+
+    <string name="transition_item_home">transition_item_home</string>
+    <string name="transition_item_detail">transition_item_detail</string>
 </resources>
